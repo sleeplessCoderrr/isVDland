@@ -1,8 +1,6 @@
-import * as THREE from "../../threejs/build/three.module.js ";
+import * as THREE from "../../threejs/build/three.module.js";
 
 export class Lighting {
-  constructor() {}
-
   createAmbientLight = (color, intensity) => {
     return new THREE.AmbientLight(color, intensity);
   };
@@ -21,8 +19,6 @@ export class Lighting {
 }
 
 export class Material {
-  constructor() {}
-
   createMeshBasicMaterial = (settings) => {
     return new THREE.MeshBasicMaterial(settings);
   };
@@ -38,10 +34,16 @@ export class Material {
   createPhongMaterial = (settings) => {
     return new THREE.MeshPhongMaterial(settings);
   };
+
+  createPointMaterial = (settings) => {
+    return new THREE.PointsMaterial(settings);
+  };
 }
 
 export class Geometry {
-  constructor() {}
+  createPoint = (particle, material) => {
+    return new THREE.Points(particle, material);
+  }
 
   createBox = (width, height, depth, material) => {
     const geometry = new THREE.BoxGeometry(width, height, depth);
@@ -67,8 +69,12 @@ export class Geometry {
     return new THREE.Mesh(geometry, material);
   };
 
-  createPolyHedron = (verticesOfCube, indicesOfFaces, material) => {
-    const geometry = new THREE.PolyhedronGeometry(verticesOfCube, indicesOfFaces, 6, 2);
+  createVector3 = (x, y, z) => {
+    return new THREE.Vector3(x, y, z)
+  }
+
+  createPlane = (width, height, widthSegments, heightSegments, material) => {
+    const geometry = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
     return new THREE.Mesh(geometry, material);
   };
   
@@ -79,5 +85,13 @@ export class Geometry {
   setRotation = (instance, rotation) => {
     instance.rotation.x = rotation;
   };
+
+  setCastShadow = (instance, isCast) => {
+    instance.castShadow = isCast;
+  }
+
+  setReceiveShadow = (instance, isCast) => {
+    instance.receiveShadow = isCast;
+  }
 }
 

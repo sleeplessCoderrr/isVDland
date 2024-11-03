@@ -2,8 +2,6 @@ import * as THREE from "../../threejs/build/three.module.js";
 import { OrbitControls } from "../../threejs/examples/jsm/controls/OrbitControls.js";
 
 export class Builder {
-  constructor() {}
-
   createCamera = (fov, far) => {
     return new THREE.PerspectiveCamera(
       fov,
